@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KT Explore | Travel & Tours</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background:#ffffff;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    nav a {
+      text-decoration:none;
+      color:#0b3c5d;
+      font-weight:bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color:#f39c12; }
+
+    header {
+      background: linear-gradient(135deg, #0b3c5d, #1c658c);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease;
+    }
+
+    header p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: auto;
+      animation: fadeInUp 1s ease;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #f39c12;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover { background: #d98209; }
+
+    section {
+      padding: 80px 20px;
+      background: white;
+      margin-bottom: 10px;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #0b3c5d;
+      font-size: 36px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .services, .testimonials, .why-choose {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      overflow: hidden;
+      cursor: pointer;
+      padding: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h3 { margin: 15px 0 5px 0; color: #0b3c5d; }
+    .card p { padding: 0 15px 15px 15px; color: #555; }
+
+    .why-choose .card { background:#0b3c5d; color:white; padding:25px; }
+    .testimonials .card { background:#f39c12; color:white; padding:25px; }
+
+    footer {
+      background: #0b3c5d;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    form input, form select, form textarea {
+      padding:10px;
+      border-radius:5px;
+      border:1px solid #ccc;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    form button { cursor:pointer; }
+
+    .tour-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 50px 20px;
+    }
+
+    .tour-card {
+      position: relative;
+      width: 300px;
+      height: 250px;
+      border-radius: 15px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .tour-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .tour-card .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: background 0.3s;
+    }
+
+    .tour-card:hover .overlay { background: rgba(0, 0, 0, 0.6); }
+
+    .tour-card h3 { margin: 0 0 10px 0; font-size: 22px; }
+    .tour-card p { margin: 0; font-size: 16px; }
+
+    .instagram-float {
+      position: fixed;
+      bottom: 100px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      z-index: 100;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .gallery-container img {
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <img src="logo.png" alt="KT Explore Logo" style="height:50px;" />
+    <strong style="color:#0b3c5d; font-size:20px;">KT Explore</strong>
+  </div>
+  <div style="display:flex; gap:20px;">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#packages">Packages</a>
+    <a href="#booking">Booking</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact" style="color:#f39c12;">Contact</a>
+  </div>
+</nav>
+
+<header>
+  <h1>KT Explore</h1>
+  <p>Explore Ethiopia with confidence. Discover culture, history, and adventure.</p>
+  <a href="#contact" class="btn">Contact Us</a>
+</header>
+
+<section id="about">
+  <h2>About Us</h2>
+  <div class="content">
+    <p>KT Explore is a travel-focused business dedicated to helping people experience Ethiopia.</p>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="content services">
+    <div class="card">City Tours</div>
+    <div class="card">Historical Sites</div>
+    <div class="card">Nature & Adventure Trips</div>
+    <div class="card">Custom Travel Plans</div>
+    <div class="card">Group & Private Tours</div>
+  </div>
+</section>
+
+<section id="packages">
+  <h2>Tour Packages</h2>
+  <div class="tour-container">
+    <a class="tour-card" style="background-image:url('city.jpg')">
+      <div class="overlay"><h3>City Tour</h3></div>
+    </a>
+    <a class="tour-card" style="background-image:url('northern.jpg')">
+      <div class="overlay"><h3>Northern Ethiopia Tour</h3></div>
+    </a>
+    <a class="tour-card" style="background-image:url('southern.jpg')">
+      <div class="overlay"><h3>Southern Ethiopia Tour</h3></div>
+    </a>
+    <a class="tour-card" style="background-image:url('historical.jpg')">
+      <div class="overlay"><h3>Historical Sites</h3></div>
+    </a>
+    <a class="tour-card" style="background-image:url('2026.jpg')">
+      <div class="overlay"><h3>2026 Trip</h3></div>
+    </a>
+  </div>
+</section>
+
+<section id="booking">
+  <h2>Book Your Tour</h2>
+  <div class="content">
+    <form action="https://formspree.io/f/mrezjlan" method="POST"
+      style="display:flex;flex-direction:column;gap:15px;max-width:500px;margin:auto;">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <!-- ✅ FIXED LINE -->
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+
+      <input type="tel" name="phone" placeholder="Phone / WhatsApp" required>
+
+      <select name="package" required>
+        <option value="">Select a Package</option>
+        <option>City Tour</option>
+        <option>Northern Ethiopia Tour</option>
+        <option>Southern Ethiopia Tour</option>
+        <option>Historical Sites Tour</option>
+        <option>2026 Trip</option>
+      </select>
+
+      <input type="number" name="travellers" placeholder="Number of Travelers" required>
+      <input type="date" name="start_date" required>
+      <textarea name="notes" placeholder="Additional Notes"></textarea>
+
+      <input type="hidden" name="_subject" value="New Booking Request - KT Explore">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse"
+        value="Thank you for booking with KT Explore! We will contact you shortly.">
+
+      <button type="submit" class="btn">Submit Booking</button>
+    </form>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-container">
+    <img src="gallery1.jpg">
+    <img src="gallery2.jpg">
+    <img src="gallery3.jpg">
+    <img src="gallery4.jpg">
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="content testimonials">
+    <div class="card">Amazing service!</div>
+    <div class="card">Professional guides.</div>
+    <div class="card">Highly recommended!</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="content">
+    <p><strong>Phone:</strong> +251 903 193 303</p>
+    <p><strong>Email:</strong> ktexploretravel@gmail.com</p>
+  </div>
+</section>
+
+<a href="https://www.instagram.com/kt_explore03/" target="_blank" class="instagram-float">
+  <img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" width="60">
+</a>
+
+<a href="https://wa.me/251903193303" target="_blank"
+style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;text-decoration:none;">
+💬 WhatsApp
+</a>
+
+<footer>
+  <p>© 2025 KT Explore. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
